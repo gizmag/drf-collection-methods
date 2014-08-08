@@ -12,7 +12,7 @@ class CollectionMethodRouterMixin(object):
     )
 
     def get_routes(self, viewset):
-        ret = super(CollectionMethodRouterMixin, self).get_routes(viewset)
+        ret = []
 
         dynamic_routes = []
         for methodname in dir(viewset):
@@ -33,6 +33,7 @@ class CollectionMethodRouterMixin(object):
                 initkwargs=initkwargs,
             ))
 
+        ret.extend(super(CollectionMethodRouterMixin, self).get_routes(viewset))
         return ret
 
 def collection_link(**kwargs):
